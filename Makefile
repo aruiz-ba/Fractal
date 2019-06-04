@@ -6,13 +6,13 @@
 #    By: aruiz-ba <aruiz-ba@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/03/28 12:02:51 by aruiz-ba          #+#    #+#              #
-#    Updated: 2019/05/30 18:57:08 by aruiz-ba         ###   ########.fr        #
+#    Updated: 2019/06/03 14:21:00 by aruiz-ba         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = frac 
+NAME = fractol
 
-SRC	= $(addprefix src/, main.c image.c)
+SRC	= $(addprefix src/, main.c image.c models.c keyboard.c)
 
 OBJ = $(SRC:.c=.o)
 

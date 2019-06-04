@@ -6,51 +6,11 @@
 /*   By: aruiz-ba <aruiz-ba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/29 14:02:24 by aruiz-ba          #+#    #+#             */
-/*   Updated: 2019/05/30 19:06:53 by aruiz-ba         ###   ########.fr       */
+/*   Updated: 2019/06/04 18:32:22 by aruiz-ba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <frac.h>
-
-float map1(float a, float a0, float a1, float b0, float b1)
-{
-	return (b0 + (b1 - b0) * ((a-a0)/(a1-a0)));
-}
-
-int		math(int bright, int x, int y, float c, float d)
-{
-	float	a;
-	float	b;
-	int		n;
-	int		max_it;
-	int		z;
-	float	aa;
-	float	bb;
-	float	ca;
-	float	cb;
-
-	a = map1(x , 0, WIN_WIDTH, c, d);
-	b = map1(y , 0, WIN_HEIGHT, c, d);
-	ca = a;
-	cb = b;
-	n = 0;
-	max_it = 100;
-	z = 0;
-	while (n < max_it)
-	{
-		aa = a * a - b * b;
-		bb = 2 * a * b;
-		a = aa + ca;
-		b = bb + cb;
-		if (fabsf(a + b) > 16)
-			break ;
-		n++;
-	}
-	bright = map1(n, 0, max_it, 0, 255);
-	if(n == max_it)
-		bright = 0;
-	return(bright);
-}
 
 void	freeimage(char **image_string)
 {
@@ -72,26 +32,25 @@ void	freeimage(char **image_string)
 	}
 }
 
-void	fill_image(char **image_string, float a, float b)
+void	fill_image(t_thr *thr)
 {
 	int		x;
 	int		y;
-	int		k;
 	int		bright;
 
-	k = 0;
+	thr->k = 0;
 	x = 0;
 	while (x < WIN_WIDTH)
 	{
 		y = 0;
-		while (y < WIN_HEIGHT)
+		while (y < WIN_HEIGHT && thr->k != thr->end_k)
 		{
-			bright = math(bright, y, x, a, b);
-			(*image_string)[k + 0] = bright;
-			(*image_string)[k + 1] = bright;
-			(*image_string)[k + 2] = bright;
-			(*image_string)[k + 3] = 0;
-			k += 4;
+			bright = mandelbrot(bright, y, x, thr->a, thr->b);
+			(*thr->image_string)[thr->k + 0] = bright;
+			(*thr->image_string)[thr->k + 1] = bright;
+			(*thr->image_string)[thr->k + 2] = bright;
+			(*thr->image_string)[thr->k + 3] = 0;
+			thr->k += 4;
 			y++;
 		}
 		x++;
