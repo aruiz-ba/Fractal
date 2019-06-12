@@ -6,7 +6,7 @@
 /*   By: aruiz-ba <aruiz-ba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/29 14:26:13 by aruiz-ba          #+#    #+#             */
-/*   Updated: 2019/06/04 18:32:08 by aruiz-ba         ###   ########.fr       */
+/*   Updated: 2019/06/12 19:38:41 by aruiz-ba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,15 @@ typedef struct		s_thr
 	char			**image_string;
 	float			a;
 	float			b;
-	int				k;
+	int				x;
+	int				y;
+	int				min_k;
 	int				end_k;
 }					t_thr;
 
 t_image *new_image(t_mlx *mlx);
 void	fill_image(t_thr *thr);
+void	*cast(void *thr);
 void	freeimage(char **image_string);
 int		mandelbrot(int bright, int x, int y, float c, float d);
 int		deal_key(int key, t_mlx *mlx);

@@ -6,7 +6,7 @@
 /*   By: aruiz-ba <aruiz-ba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/29 14:02:24 by aruiz-ba          #+#    #+#             */
-/*   Updated: 2019/06/04 18:32:22 by aruiz-ba         ###   ########.fr       */
+/*   Updated: 2019/06/12 20:11:06 by aruiz-ba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,26 +34,25 @@ void	freeimage(char **image_string)
 
 void	fill_image(t_thr *thr)
 {
-	int		x;
-	int		y;
 	int		bright;
+	t_thr	th;
 
-	thr->k = 0;
-	x = 0;
-	while (x < WIN_WIDTH)
+	ft_memcpy(&th, thr, sizeof(t_thr));
+	th.y = thr->y;
+	while (th.y < WIN_WIDTH)
 	{
-		y = 0;
-		while (y < WIN_HEIGHT && thr->k != thr->end_k)
+		th.x = thr->x;
+		while (th.x < WIN_HEIGHT && th.min_k <= th.end_k)
 		{
-			bright = mandelbrot(bright, y, x, thr->a, thr->b);
-			(*thr->image_string)[thr->k + 0] = bright;
-			(*thr->image_string)[thr->k + 1] = bright;
-			(*thr->image_string)[thr->k + 2] = bright;
-			(*thr->image_string)[thr->k + 3] = 0;
-			thr->k += 4;
-			y++;
+			bright = mandelbrot(bright, th.x, th.y, th.a, th.b);
+			(*thr->image_string)[th.min_k + 0] = bright;
+			(*thr->image_string)[th.min_k + 1] = bright;
+			(*thr->image_string)[th.min_k + 2] = bright;
+			(*thr->image_string)[th.min_k + 3] = 0;
+			th.min_k += 4;
+			th.x++;
 		}
-		x++;
+		th.y++;
 	}
 }
 
@@ -66,4 +65,10 @@ t_image	*new_image(t_mlx *mlx)
 	m->image = mlx_new_image(mlx->mlx, WIN_WIDTH, WIN_HEIGHT);
 	m->ptr = mlx_get_data_addr(m->image, &m->bpp, &m->stride, &m->endian);
 	return (m);
+}
+
+void *cast(void *thr)
+{
+	fill_image(thr);
+	return(NULL);
 }
