@@ -6,7 +6,7 @@
 /*   By: aruiz-ba <aruiz-ba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/29 14:02:24 by aruiz-ba          #+#    #+#             */
-/*   Updated: 2019/06/12 20:11:06 by aruiz-ba         ###   ########.fr       */
+/*   Updated: 2019/06/14 16:52:16 by aruiz-ba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,24 +35,26 @@ void	freeimage(char **image_string)
 void	fill_image(t_thr *thr)
 {
 	int		bright;
-	t_thr	th;
-
-	ft_memcpy(&th, thr, sizeof(t_thr));
-	th.y = thr->y;
-	while (th.y < WIN_WIDTH)
+	int		init_x;
+////ft_putstr("\nESTO ES Y :");
+////ft_putnbr(th.y);
+////ft_putstr("\nESTO ES X :");
+////ft_putnbr(thr->x);
+	init_x = thr->x;
+	while (thr->y < WIN_WIDTH && thr->min_k <= thr->end_k)
 	{
-		th.x = thr->x;
-		while (th.x < WIN_HEIGHT && th.min_k <= th.end_k)
+		thr->x = init_x;
+		while (thr->x < WIN_HEIGHT && thr->min_k <= thr->end_k)
 		{
-			bright = mandelbrot(bright, th.x, th.y, th.a, th.b);
-			(*thr->image_string)[th.min_k + 0] = bright;
-			(*thr->image_string)[th.min_k + 1] = bright;
-			(*thr->image_string)[th.min_k + 2] = bright;
-			(*thr->image_string)[th.min_k + 3] = 0;
-			th.min_k += 4;
-			th.x++;
+			bright = mandelbrot(bright, thr->x, thr->y, thr->a, thr->b);
+			(*thr->image_string)[thr->min_k + 0] = bright;
+			(*thr->image_string)[thr->min_k + 1] = bright;
+			(*thr->image_string)[thr->min_k + 2] = bright;
+			(*thr->image_string)[thr->min_k + 3] = 0;
+			thr->min_k += 4;
+			thr->x++;
 		}
-		th.y++;
+		thr->y++;
 	}
 }
 

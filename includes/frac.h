@@ -6,7 +6,7 @@
 /*   By: aruiz-ba <aruiz-ba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/29 14:26:13 by aruiz-ba          #+#    #+#             */
-/*   Updated: 2019/06/12 19:38:41 by aruiz-ba         ###   ########.fr       */
+/*   Updated: 2019/06/14 16:38:01 by aruiz-ba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 
 # define WIN_WIDTH	700	
 # define WIN_HEIGHT	700
+# define THR_NUM 	2
 # define O			31	
 # define P			35
 
@@ -29,17 +30,9 @@ typedef struct		s_image
 	int				endian;
 }					t_image;
 
-typedef struct		s_mlx
-{
-	void			*mlx;
-	void			*win;
-	t_image			*img;
-	float			a;
-	float			b;
-}					t_mlx;
-
 typedef struct		s_thr
 {
+	pthread_t   	tid;
 	char			**image_string;
 	float			a;
 	float			b;
@@ -48,6 +41,16 @@ typedef struct		s_thr
 	int				min_k;
 	int				end_k;
 }					t_thr;
+
+typedef struct		s_mlx
+{
+	void			*mlx;
+	void			*win;
+	t_image			*img;
+	float			a;
+	float			b;
+	t_thr			*thr;
+}					t_mlx;
 
 t_image *new_image(t_mlx *mlx);
 void	fill_image(t_thr *thr);
