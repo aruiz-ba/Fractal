@@ -12,13 +12,6 @@
 
 #include <frac.h>
 
-void conio(t_thr *thr)
-{
-	ft_putstr("Soy thread de y :");
-	ft_putnbr(thr->y);
-	ft_putchar('\n');		
-}
-
 int		main()
 {
 	t_mlx		mlx;
@@ -40,8 +33,7 @@ int		main()
 		thr[i].y = i * 350;
 		thr[i].min_k = i * 980000;
 		thr[i].end_k = (i * 980000) + 980000;
-		cast(&thr[i]);
-	//	pthread_create(&thr[i].tid, NULL, cast, &thr[i]);
+		pthread_create(&thr[i].tid, NULL, cast, &thr[i]);
 	}
 	i = -1;
 	while(++i < THR_NUM)

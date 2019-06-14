@@ -49,7 +49,7 @@ typedef struct		s_mlx
 	t_image			*img;
 	float			a;
 	float			b;
-	t_thr			*thr;
+	t_thr			thr[THR_NUM];
 }					t_mlx;
 
 t_image *new_image(t_mlx *mlx);

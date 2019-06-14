@@ -14,29 +14,27 @@
 
 void	setall(t_mlx *mlx)
 {
-	int	i;
-	pthread_t   tid[1];		
-
+	int	i;		
+	
 	i = -1;
 	freeimage(&mlx->img->ptr);
 	mlx_clear_window(mlx->mlx, mlx->win);
-	while(++i <= 1)
+	while(++i < THR_NUM)
 	{
-		mlx->thr->a = -1;
-		mlx->thr->b = 1;
-		mlx->thr->x = 0;
-		mlx->thr->y = i * 350;
-		mlx->thr->min_k = i * 980000;// i * 50;
-		mlx->thr->end_k = (i * 980000) + 980000;//(i + i) * 50;
-		pthread_create(&tid[i], NULL, cast, mlx->thr);
-		ft_putnbr(mlx->thr->y);
-		ft_putchar('\n');
+		mlx->thr[i].image_string = &mlx->img->ptr;
+		mlx->thr[i].a = mlx->a;
+		mlx->thr[i].b = mlx->b;
+		mlx->thr[i].x = 0;
+		mlx->thr[i].y = i * 350;
+		mlx->thr[i].min_k = i * 980000;
+		mlx->thr[i].end_k = (i * 980000) + 980000;
+		pthread_create(&mlx->thr[i].tid, NULL, cast, &mlx->thr[i]);
 	}
 	i = -1;
-	while(++i <= 1)
+	while(++i < THR_NUM)
 	{
-		pthread_join(tid[i], NULL);
-	}
+		pthread_join(mlx->thr[i].tid, NULL);	
+	}	
 	mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->img->image, 0, 0);
 }
 
