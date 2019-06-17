@@ -6,7 +6,7 @@
 /*   By: aruiz-ba <aruiz-ba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/29 14:02:24 by aruiz-ba          #+#    #+#             */
-/*   Updated: 2019/06/14 16:52:16 by aruiz-ba         ###   ########.fr       */
+/*   Updated: 2019/06/17 19:13:16 by aruiz-ba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,9 @@ void	fill_image(t_thr *thr)
 		while (thr->x < WIN_HEIGHT && thr->min_k <= thr->end_k)
 		{
 			bright = mandelbrot(bright, thr->x, thr->y, thr->a, thr->b);
-			(*thr->image_string)[thr->min_k + 0] = bright;
-			(*thr->image_string)[thr->min_k + 1] = bright;
-			(*thr->image_string)[thr->min_k + 2] = bright;
+			(*thr->image_string)[thr->min_k + 0] = bright % 256 % 256;
+			(*thr->image_string)[thr->min_k + 1] = bright / 256 % 256;
+			(*thr->image_string)[thr->min_k + 2] = bright / 256 / 256;
 			(*thr->image_string)[thr->min_k + 3] = 0;
 			thr->min_k += 4;
 			thr->x++;
@@ -55,15 +55,12 @@ void	fill_image(t_thr *thr)
 	}
 }
 
-t_image	*new_image(t_mlx *mlx)
+void	new_image(t_m *m)
 {
-	t_image		*m;
-
-	if ((m = ft_memalloc(sizeof(t_image))) == NULL)
-		return (NULL);
-	m->image = mlx_new_image(mlx->mlx, WIN_WIDTH, WIN_HEIGHT);
-	m->ptr = mlx_get_data_addr(m->image, &m->bpp, &m->stride, &m->endian);
-	return (m);
+/*	if ((m->img = ft_memalloc(sizeof(t_image))) == NULL)
+		return (NULL);*/
+	m->img.image = mlx_new_image(m->mlx.mlx, WIN_WIDTH, WIN_HEIGHT);
+	m->img.ptr = mlx_get_data_addr(m->img.image, &m->img.bpp, &m->img.stride, &m->img.endian);
 }
 
 void *cast(void *thr)

@@ -6,7 +6,7 @@
 /*   By: aruiz-ba <aruiz-ba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/03 13:58:03 by aruiz-ba          #+#    #+#             */
-/*   Updated: 2019/06/06 19:02:21 by aruiz-ba         ###   ########.fr       */
+/*   Updated: 2019/06/17 19:13:18 by aruiz-ba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ int		mandelbrot(int bright, int x, int y, float c, float d)
 	float	ca;
 	float	cb;
 
-	a = map1(x , 0, WIN_WIDTH, -.6, .6);//c, d);
-	b = map1(y , 0, WIN_HEIGHT, -.6, .6);//c, d);
+	a = map1(x , 0, WIN_WIDTH, c, d);
+	b = map1(y , 0, WIN_HEIGHT, c, d);
 	ca = a;
 	cb = b;
 	n = 0;
@@ -40,13 +40,13 @@ int		mandelbrot(int bright, int x, int y, float c, float d)
 	{
 		aa = a * a - b * b;
 		bb = 2 * a * b;
-		a = aa + c;//ca; 
-		b = bb + d;//cb;
+		a = aa + ca; 
+		b = bb + cb;
 		if (fabsf(a + b) > 16)
 			break ;
 		n++;
 	}
-	bright = map1(n, 0, max_it, 0, 255);
+	bright = map1(n, 0, max_it, 0xFF0000, 0xDEFF00);
 	if(n == max_it)
 		bright = 0;
 	return(bright);
