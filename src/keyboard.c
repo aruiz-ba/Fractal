@@ -25,9 +25,9 @@ void	setall(t_mlx *mlx)
 		mlx->thr[i].a = mlx->a;
 		mlx->thr[i].b = mlx->b;
 		mlx->thr[i].x = 0;
-		mlx->thr[i].y = i * 350;
-		mlx->thr[i].min_k = i * 980000;
-		mlx->thr[i].end_k = (i * 980000) + 980000;
+		mlx->thr[i].y = i;
+		mlx->thr[i].min_k = i * 2800;
+		mlx->thr[i].end_k = (i * 2800) + 2800;
 		pthread_create(&mlx->thr[i].tid, NULL, cast, &mlx->thr[i]);
 	}
 	i = -1;
@@ -47,10 +47,14 @@ int		deal_key(int key, t_mlx *mlx)
 	}
 	if (key == P)
 	{
-		mlx->a = mlx->a - 0.1;
-		mlx->b = mlx->b + 0.1;
+		mlx->a = mlx->a - 0.001;
+		mlx->b = mlx->b + 0.001;
 	}
-	if(key == O || key == P)
+	if(key == 13)
+	{
+		mlx->a = mlx->a - 0.1;
+	}
+	if(key == O || key == P || key == 13)
 		setall(mlx);
 	return (1);
 }

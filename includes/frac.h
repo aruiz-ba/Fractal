@@ -17,7 +17,7 @@
 
 # define WIN_WIDTH	700	
 # define WIN_HEIGHT	700
-# define THR_NUM 	2
+# define THR_NUM 	700
 # define O			31	
 # define P			35
 

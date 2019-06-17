@@ -30,9 +30,9 @@ int		main()
 		thr[i].a = -1;
 		thr[i].b = 1;
 		thr[i].x = 0;
-		thr[i].y = i * 350;
-		thr[i].min_k = i * 980000;
-		thr[i].end_k = (i * 980000) + 980000;
+		thr[i].y = i;
+		thr[i].min_k = i * 2800;
+		thr[i].end_k = (i * 2800) + 2800;
 		pthread_create(&thr[i].tid, NULL, cast, &thr[i]);
 	}
 	i = -1;

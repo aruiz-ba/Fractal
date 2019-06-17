@@ -36,10 +36,7 @@ void	fill_image(t_thr *thr)
 {
 	int		bright;
 	int		init_x;
-////ft_putstr("\nESTO ES Y :");
-////ft_putnbr(th.y);
-////ft_putstr("\nESTO ES X :");
-////ft_putnbr(thr->x);
+	
 	init_x = thr->x;
 	while (thr->y < WIN_WIDTH && thr->min_k <= thr->end_k)
 	{

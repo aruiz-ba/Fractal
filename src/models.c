@@ -29,8 +29,8 @@ int		mandelbrot(int bright, int x, int y, float c, float d)
 	float	ca;
 	float	cb;
 
-	a = map1(x , 0, WIN_WIDTH, c, d);
-	b = map1(y , 0, WIN_HEIGHT, c, d);
+	a = map1(x , 0, WIN_WIDTH, -.6, .6);//c, d);
+	b = map1(y , 0, WIN_HEIGHT, -.6, .6);//c, d);
 	ca = a;
 	cb = b;
 	n = 0;
@@ -40,8 +40,8 @@ int		mandelbrot(int bright, int x, int y, float c, float d)
 	{
 		aa = a * a - b * b;
 		bb = 2 * a * b;
-		a = aa + ca;
-		b = bb + cb;
+		a = aa + c;//ca; 
+		b = bb + d;//cb;
 		if (fabsf(a + b) > 16)
 			break ;
 		n++;
