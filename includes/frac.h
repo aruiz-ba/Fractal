@@ -6,7 +6,7 @@
 /*   By: aruiz-ba <aruiz-ba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/29 14:26:13 by aruiz-ba          #+#    #+#             */
-/*   Updated: 2019/06/17 19:26:31 by aruiz-ba         ###   ########.fr       */
+/*   Updated: 2019/06/18 19:37:11 by aruiz-ba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 # include "math.h"
 # include "pthread.h"
 
-# define WIN_WIDTH	1000	
-# define WIN_HEIGHT	1000
-# define THR_NUM 	1000
+# define WIN_WIDTH	700	
+# define WIN_HEIGHT	700
+# define THR_NUM 	700
 # define O			31	
 # define P			35
 
@@ -34,8 +34,10 @@ typedef struct		s_thr
 {
 	pthread_t		tid;
 	char			**image_string;
-	float			a;
-	float			b;
+	int				tr1;
+	int				tr2;
+	float			zom1;
+	float			zom2;
 	int				x;
 	int				y;
 	int				min_k;
@@ -65,5 +67,7 @@ void 	new_image(t_m *m);
 void	fill_image(t_thr *thr);
 void	*cast(void *thr);
 void	freeimage(char **image_string);
-int		mandelbrot(int bright, int x, int y, float c, float d);
+int		mandelbrot(int bright, t_thr *thr);
 int		deal_key(int key, t_mlx *m);
+int 	mouse_move(int x, int y, t_mlx *mlx);
+void	setall(t_mlx *mlx);

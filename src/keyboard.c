@@ -6,7 +6,7 @@
 /*   By: aruiz-ba <aruiz-ba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/03 14:12:23 by aruiz-ba          #+#    #+#             */
-/*   Updated: 2019/06/17 19:26:27 by aruiz-ba         ###   ########.fr       */
+/*   Updated: 2019/06/18 18:34:17 by aruiz-ba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ void	setall(t_mlx *mlx)
 	while(++i < THR_NUM)
 	{
 		mlx->thr[i].image_string = &mlx->img->ptr;
-		mlx->thr[i].a = mlx->a;
-		mlx->thr[i].b = mlx->b;
+		mlx->thr[i].tr1 = mlx->a;
+		mlx->thr[i].tr2 = mlx->b;
 		mlx->thr[i].x = 0;
 		mlx->thr[i].y = i;
 		mlx->thr[i].min_k = i * mlx->k_in;

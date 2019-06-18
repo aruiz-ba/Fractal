@@ -6,7 +6,7 @@
 /*   By: aruiz-ba <aruiz-ba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/03 13:58:03 by aruiz-ba          #+#    #+#             */
-/*   Updated: 2019/06/17 19:13:18 by aruiz-ba         ###   ########.fr       */
+/*   Updated: 2019/06/18 19:37:13 by aruiz-ba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ float map1(float a, float a0, float a1, float b0, float b1)
 		return (b0 + (b1 - b0) * ((a-a0)/(a1-a0)));
 }
 
-int		mandelbrot(int bright, int x, int y, float c, float d)
+int		mandelbrot(int bright, t_thr *thr)
 {
 	float	a;
 	float	b;
@@ -29,10 +29,11 @@ int		mandelbrot(int bright, int x, int y, float c, float d)
 	float	ca;
 	float	cb;
 
-	a = map1(x , 0, WIN_WIDTH, c, d);
-	b = map1(y , 0, WIN_HEIGHT, c, d);
-	ca = a;
-	cb = b;
+	a = map1(thr->x , 0, WIN_WIDTH, -2, 2);
+	b = map1(thr->y , 0, WIN_HEIGHT, -2, 2);
+	
+	ca = map1(thr->tr1 , 0, WIN_WIDTH, -2, 2);
+	cb = map1(thr->tr2 , 0, WIN_HEIGHT, -2, 2);
 	n = 0;
 	max_it = 100;
 	z = 0;

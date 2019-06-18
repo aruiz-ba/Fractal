@@ -6,7 +6,7 @@
 /*   By: aruiz-ba <aruiz-ba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/29 14:02:24 by aruiz-ba          #+#    #+#             */
-/*   Updated: 2019/06/17 19:13:16 by aruiz-ba         ###   ########.fr       */
+/*   Updated: 2019/06/18 19:32:16 by aruiz-ba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	fill_image(t_thr *thr)
 		thr->x = init_x;
 		while (thr->x < WIN_HEIGHT && thr->min_k <= thr->end_k)
 		{
-			bright = mandelbrot(bright, thr->x, thr->y, thr->a, thr->b);
+			bright = mandelbrot(bright, thr);
 			(*thr->image_string)[thr->min_k + 0] = bright % 256 % 256;
 			(*thr->image_string)[thr->min_k + 1] = bright / 256 % 256;
 			(*thr->image_string)[thr->min_k + 2] = bright / 256 / 256;

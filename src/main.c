@@ -6,7 +6,7 @@
 /*   By: aruiz-ba <aruiz-ba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/29 13:44:35 by aruiz-ba          #+#    #+#             */
-/*   Updated: 2019/06/17 19:13:13 by aruiz-ba         ###   ########.fr       */
+/*   Updated: 2019/06/18 17:13:05 by aruiz-ba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,19 @@ int		main()
 	m = NULL;
 	if (!(m = (t_m*)malloc(sizeof(t_m))))
 		return (-1);
-	//ft_bzero(m, sizeof(m));
+	ft_bzero(m, sizeof(m));
 	m->k_in = WIN_HEIGHT * 4;
 	m->mlx.mlx = mlx_init();
 	m->mlx.win = mlx_new_window(m->mlx.mlx, WIN_WIDTH, WIN_HEIGHT, "fract");
 	new_image(m);
+
 	while(++i < THR_NUM)
 	{
 		m->thr[i].image_string = &m->img.ptr;
-		m->thr[i].a = -1;
-		m->thr[i].b = 1;
+		m->thr[i].zom1 = -1;
+		m->thr[i].zom2 = 1;
+		m->thr[i].tr1 = 1;
+		m->thr[i].tr2 = 1;
 		m->thr[i].x = 0;
 		m->thr[i].y = i;
 		m->thr[i].min_k = i * m->k_in;
@@ -45,7 +48,9 @@ int		main()
 	m->mlx.b = 1;
 	m->mlx.img = &m->img;
 	m->mlx.k_in = m->k_in;
-	mlx_hook(m->mlx.win, 2, 1L << 2, deal_key, &m->mlx);
+
+	//mlx_hook(m->mlx.win, 2, 1L << 2, deal_key, &m->mlx);
+	mlx_hook(m->mlx.win, 6, 1L << 2, mouse_move, &m->mlx);
 	mlx_loop(m->mlx.mlx);
 	return (0);
 }
