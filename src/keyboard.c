@@ -6,7 +6,7 @@
 /*   By: aruiz-ba <aruiz-ba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/03 14:12:23 by aruiz-ba          #+#    #+#             */
-/*   Updated: 2019/06/20 16:48:08 by aruiz-ba         ###   ########.fr       */
+/*   Updated: 2019/06/24 21:08:47 by aruiz-ba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 
 void	setall(t_mlx *mlx)
 {
-	int	i;		
-	
+	int	i;
+	t_cast cst;
+
 	i = -1;
 	freeimage(&mlx->img->ptr);
 	mlx_clear_window(mlx->mlx, mlx->win);
@@ -30,13 +31,15 @@ void	setall(t_mlx *mlx)
 		mlx->thr[i].y = i;
 		mlx->thr[i].min_k = i * mlx->k_in;
 		mlx->thr[i].end_k = (i * mlx->k_in) + mlx->k_in;
-		mlx->thr[i].f = mlx->f;
-		pthread_create(&mlx->thr[i].tid, NULL, cast, &mlx->thr[i]);
+		cst.f = mlx->f;
+		cst.th[i] = &mlx->thr[i];
+		cst.thr = &mlx->thr[i];
+		pthread_create(&mlx->thr[i].tid, NULL, cast, &cst);
 	}
 	i = -1;
 	while(++i < THR_NUM)
 	{
-		pthread_join(mlx->thr[i].tid, NULL);	
+		pthread_join(mlx->thr[i].tid, NULL);
 	}	
 	mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->img->image, 0, 0);
 }

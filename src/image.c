@@ -6,7 +6,7 @@
 /*   By: aruiz-ba <aruiz-ba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/29 14:02:24 by aruiz-ba          #+#    #+#             */
-/*   Updated: 2019/06/20 16:48:17 by aruiz-ba         ###   ########.fr       */
+/*   Updated: 2019/06/24 21:08:40 by aruiz-ba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	freeimage(char **image_string)
 	}
 }
 
-void	fill_image(t_thr *thr)
+void	fill_image(t_thr *thr, int (*f)(int, t_thr *))
 {
 	int		bright;
 	int		init_x;
@@ -43,7 +43,7 @@ void	fill_image(t_thr *thr)
 		thr->x = init_x;
 		while (thr->x < WIN_HEIGHT && thr->min_k <= thr->end_k)
 		{
-			bright = thr->f(bright, thr);
+			bright = f(bright, thr);
 			(*thr->image_string)[thr->min_k + 0] = bright % 256 % 256;
 			(*thr->image_string)[thr->min_k + 1] = bright / 256 % 256;
 			(*thr->image_string)[thr->min_k + 2] = bright / 256 / 256;
@@ -63,8 +63,13 @@ void	new_image(t_m *m)
 	m->img.ptr = mlx_get_data_addr(m->img.image, &m->img.bpp, &m->img.stride, &m->img.endian);
 }
 
-void *cast(void *thr)
+void cast2(t_cast *cast)
 {
-	fill_image(thr);
-	return(NULL);
+	fill_image(cast->thr, cast->f);
+}
+
+void *cast(void *cast)
+{
+	cast2(cast);
+	return (NULL);
 }

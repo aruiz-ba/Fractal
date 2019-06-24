@@ -6,7 +6,7 @@
 /*   By: aruiz-ba <aruiz-ba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/19 17:50:33 by aruiz-ba          #+#    #+#             */
-/*   Updated: 2019/06/20 17:18:06 by aruiz-ba         ###   ########.fr       */
+/*   Updated: 2019/06/22 18:21:52 by aruiz-ba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,16 @@ int		julia(int bright, t_thr *thr)
 
 	a = map1(thr->x , 0, WIN_WIDTH, thr->zom1 , thr->zom2);
 	b = map1(thr->y , 0, WIN_HEIGHT, thr->zom1, thr->zom2);
-	
-	ca = map1(thr->tr1 , 0, WIN_WIDTH, -2, 2);
-	cb = map1(thr->tr2 , 0, WIN_HEIGHT, -2, 2);
+	if(thr->tr1 != 0 || thr->tr2 != 0)
+	{
+		ca = map1(thr->tr1 , 0, WIN_WIDTH, -2, 2);
+		cb = map1(thr->tr2 , 0, WIN_HEIGHT, -2, 2);
+	}
+	else
+	{
+		ca = -0.8;
+		ft_putstr("Hello there");
+	}
 	n = 0;
 	max_it = 100;
 	z = 0;
@@ -36,7 +43,7 @@ int		julia(int bright, t_thr *thr)
 	{
 		aa = a * a - b * b;
 		bb = 2 * a * b;
-		a = aa + ca; 
+		a = aa + ca - 0.8; 
 		b = bb + cb;
 		if (fabsf(a + b) > 16)
 			break ;
