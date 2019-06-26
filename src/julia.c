@@ -26,15 +26,14 @@ int		julia(int bright, t_thr *thr)
 
 	a = map1(thr->x , 0, WIN_WIDTH, thr->zom1 , thr->zom2);
 	b = map1(thr->y , 0, WIN_HEIGHT, thr->zom1, thr->zom2);
-	if(thr->tr1 != 0 || thr->tr2 != 0)
+	if(!thr->tr1 || !thr->tr2)
 	{
-		ca = map1(thr->tr1 , 0, WIN_WIDTH, -2, 2);
-		cb = map1(thr->tr2 , 0, WIN_HEIGHT, -2, 2);
+		ca = 0;
 	}
 	else
 	{
-		ca = -0.8;
-		ft_putstr("Hello there");
+		ca = map1(thr->tr1 , 0, WIN_WIDTH, -2, 2);
+		cb = map1(thr->tr2 , 0, WIN_HEIGHT, -2, 2);
 	}
 	n = 0;
 	max_it = 100;

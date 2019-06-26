@@ -63,9 +63,9 @@ void	new_image(t_m *m)
 	m->img.ptr = mlx_get_data_addr(m->img.image, &m->img.bpp, &m->img.stride, &m->img.endian);
 }
 
-void cast2(t_cast *cast)
+void cast2(t_thr *cast)
 {
-	fill_image(cast->thr, cast->f);
+	fill_image(cast, cast->f);
 }
 
 void *cast(void *cast)

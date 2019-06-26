@@ -15,7 +15,6 @@
 void	setall(t_mlx *mlx)
 {
 	int	i;
-	t_cast cst;
 
 	i = -1;
 	freeimage(&mlx->img->ptr);
@@ -31,10 +30,8 @@ void	setall(t_mlx *mlx)
 		mlx->thr[i].y = i;
 		mlx->thr[i].min_k = i * mlx->k_in;
 		mlx->thr[i].end_k = (i * mlx->k_in) + mlx->k_in;
-		cst.f = mlx->f;
-		cst.th[i] = &mlx->thr[i];
-		cst.thr = &mlx->thr[i];
-		pthread_create(&mlx->thr[i].tid, NULL, cast, &cst);
+		mlx->thr[i].f = mlx->f;
+		pthread_create(&mlx->thr[i].tid, NULL, cast, &mlx->thr[i]);
 	}
 	i = -1;
 	while(++i < THR_NUM)
@@ -48,15 +45,19 @@ int		deal_key(int key, t_mlx *mlx)
 {
 	if (key == O)
 	{
-		mlx->zom1 +=  0.01;
-		mlx->zom2 -=  0.01;
+		mlx->zom1 +=  0.1;
+		mlx->zom2 -=  0.1;
 	}
 	if (key == P)
 	{
-		mlx->zom1 -=  0.01;
-		mlx->zom2 +=  0.01;
+		mlx->zom1 -=  0.1;
+		mlx->zom2 +=  0.1;
 	}
-	if(key == O || key == P || key == 13 || key == 7 || key == 6)
+	if (key == ESC)
+	{
+		exit(0);
+	}
+	if(key == O || key == P || key == ESC)
 		setall(mlx);
 	return (1);
 }

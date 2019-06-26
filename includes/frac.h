@@ -20,6 +20,7 @@
 # define THR_NUM 	700
 # define O			31	
 # define P			35
+# define ESC			53
 
 typedef struct		s_image
 {
@@ -42,14 +43,8 @@ typedef struct		s_thr
 	int				y;
 	int				min_k;
 	int				end_k;
+	void			*f;
 }					t_thr;
-
-typedef struct		s_cast
-{
-	t_thr			*th[THR_NUM];
-	t_thr			*thr;
-	int 			(*f)(int , t_thr *);
-}					t_cast;
 
 typedef struct		s_mlx
 {
@@ -77,10 +72,12 @@ void 	new_image(t_m *m);
 void	fill_image(t_thr *thr, int (*f)(int , t_thr *));
 void	*cast(void *cast);
 void	freeimage(char **image_string);
-int		mandelbrot(int bright, t_thr *thr);
-int		julia(int bright, t_thr *thr);
-int		deal_key(int key, t_mlx *m);
+int	mandelbrot(int bright, t_thr *thr);
+int	julia(int bright, t_thr *thr);
+int	deal_key(int key, t_mlx *m);
 int 	mouse_move(int x, int y, t_mlx *mlx);
 void	setall(t_mlx *mlx);
 float 	map1(float a, float a0, float a1, float b0, float b1);
-int		error(int i);
+int	error(int i);
+int	mouse_hook(int code, int x, int y, t_mlx *mlx);
+
