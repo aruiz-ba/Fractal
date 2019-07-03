@@ -6,7 +6,7 @@
 /*   By: aruiz-ba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 14:26:53 by aruiz-ba          #+#    #+#             */
-/*   Updated: 2019/07/03 17:06:56 by aruiz-ba         ###   ########.fr       */
+/*   Updated: 2019/07/03 19:33:20 by aruiz-ba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int		burningship(int bright, t_thr *thr)
 		cb = map1(thr->tr2, 0, WIN_HEIGHT, -2, 2);
 	}
 	n = 0;
-	max_it = 100;
+	max_it = 500;
 	z = 0;
 	ca = a;
 	cb = b;

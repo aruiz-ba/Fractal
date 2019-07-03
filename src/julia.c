@@ -6,7 +6,7 @@
 /*   By: aruiz-ba <aruiz-ba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/19 17:50:33 by aruiz-ba          #+#    #+#             */
-/*   Updated: 2019/07/03 16:59:55 by aruiz-ba         ###   ########.fr       */
+/*   Updated: 2019/07/03 19:13:52 by aruiz-ba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int		julia(int bright, t_thr *thr)
 		cb = map1(thr->tr2 , 0, WIN_HEIGHT, -2, 2);
 	}
 	n = 0;
-	max_it = 100;
+	max_it = 500;
 	z = 0;
 	while (n < max_it)
 	{

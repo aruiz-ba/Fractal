@@ -6,7 +6,7 @@
 /*   By: aruiz-ba <aruiz-ba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/03 14:12:23 by aruiz-ba          #+#    #+#             */
-/*   Updated: 2019/07/03 17:18:51 by aruiz-ba         ###   ########.fr       */
+/*   Updated: 2019/07/03 19:50:06 by aruiz-ba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,12 @@ int		deal_key(int key, t_mlx *mlx)
 {
 	if (key == O)
 	{
-		mlx->zoma1 /=  1.1;
-		mlx->zoma2 /=  1.1;
+		mlx->x += WIN_WIDTH;
+		mlx->y += WIN_HEIGHT;
+		mlx->x *= 1.2;
+		mlx->y *= 1.2;
+		//mlx->zoma1 /=  1.1;
+		//mlx->zoma2 /=  1.1;
 	}
 	if (key == P)
 	{
@@ -54,18 +58,18 @@ int		deal_key(int key, t_mlx *mlx)
 		mlx->zoma2 *=  1.1;
 	}
 	if (key == UP)
-		mlx->y +=  100;
+		mlx->y -=  50;
 	if (key == DOWN)
-		mlx->y -=  100;
+		mlx->y +=  50;
 	if (key == LEFT)
-		mlx->x +=  100;
+		mlx->x -=  50;
 	if (key == RIGHT)
-		mlx->x -=  100;
+		mlx->x +=  50;
 	if (key == ESC)
 	{
 		exit(0);
 	}
-	if(key == O || key == P || key == U || key == I || key == T || key == Y || key == ESC)
+	if(key == O || key == P || key == U || key == I || key == T || key == Y || key == ESC || key == UP || key == DOWN || key == LEFT || key == RIGHT)
 		setall(mlx);
 	printf("TECLA:%i\n", key);
 	return (1);
