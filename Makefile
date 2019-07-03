@@ -6,13 +6,13 @@
 #    By: aruiz-ba <aruiz-ba@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/03/28 12:02:51 by aruiz-ba          #+#    #+#              #
-#    Updated: 2019/06/19 17:52:22 by aruiz-ba         ###   ########.fr        #
+#    Updated: 2019/07/03 16:19:00 by aruiz-ba         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fractol
 
-SRC	= $(addprefix src/, main.c image.c mandelbrot.c julia.c keyboard.c mouse.c)
+SRC	= $(addprefix src/, main.c image.c mandelbrot.c julia.c keyboard.c mouse.c burningship.c)
 
 OBJ = $(SRC:.c=.o)
 

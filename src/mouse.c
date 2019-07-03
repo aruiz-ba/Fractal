@@ -6,7 +6,7 @@
 /*   By: aruiz-ba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/18 14:19:52 by aruiz-ba          #+#    #+#             */
-/*   Updated: 2019/06/24 18:57:58 by aruiz-ba         ###   ########.fr       */
+/*   Updated: 2019/07/03 16:44:49 by aruiz-ba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,17 @@ int mouse_hook(int code, int x, int y, t_mlx *mlx)
 	mlx->b = y;
 	if(code == 4|| code == 1)
 	{
-		mlx->zom1 += 0.1;
-		mlx->zom2 -= 0.1;
+		mlx->zoma1 /= 1.1;
+		mlx->zoma2 /= 1.1;
+		printf("ZOOM1:%f\n", mlx->zoma1);	
+		printf("ZOOM2:%f\n", mlx->zoma2);	
 	}
 	else if(code == 5 || code == 2)
 	{
-		mlx->zom1 -= 0.1;
-		mlx->zom2 += 0.1;
+		mlx->zoma1 *= 1.1;
+		mlx->zoma2 *= 1.1;
+		printf("ZOOM1:%f\n", mlx->zoma1);	
+		printf("ZOOM2:%f\n", mlx->zoma2);	
 	}
 	setall(mlx);
 	return (1);

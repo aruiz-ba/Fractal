@@ -6,7 +6,7 @@
 /*   By: aruiz-ba <aruiz-ba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/29 13:44:35 by aruiz-ba          #+#    #+#             */
-/*   Updated: 2019/06/24 20:42:20 by aruiz-ba         ###   ########.fr       */
+/*   Updated: 2019/07/03 18:50:58 by aruiz-ba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,10 @@ void 	set_julia(t_m *m)
 	m->mlx.b = 0;
 	m->mlx.img = &m->img;
 	m->mlx.k_in = m->k_in;
-	m->mlx.zom1 = -2;
-	m->mlx.zom2 = 2;
+	m->mlx.zoma1 = -2;
+	m->mlx.zoma2 = 2;
+	m->mlx.x = 0;
+	m->mlx.y = 0;
 	m->mlx.f = julia;
 	setall(&m->mlx);
 	mlx_mouse_hook(m->mlx.win, mouse_hook, &m->mlx);
@@ -41,11 +43,30 @@ void 	set_mandel(t_m *m)
 	m->mlx.b = 2;
 	m->mlx.img = &m->img;
 	m->mlx.k_in = m->k_in;
-	m->mlx.zom1 = -2;
-	m->mlx.zom2 = 2;
+	m->mlx.zoma1 = -2;
+	m->mlx.zoma2 = 2;
+	m->mlx.x = 0;
+	m->mlx.y = 0;
 	m->mlx.f = mandelbrot;
 	setall(&m->mlx);
 	mlx_hook(m->mlx.win, 2, 1L << 2, deal_key, &m->mlx);
+	mlx_mouse_hook(m->mlx.win, mouse_hook, &m->mlx);
+}
+
+void 	set_burningship(t_m *m)
+{
+	m->mlx.a = 2;
+	m->mlx.b = 2;
+	m->mlx.img = &m->img;
+	m->mlx.k_in = m->k_in;
+	m->mlx.zoma1 = -2;
+	m->mlx.zoma2 = 2;
+	m->mlx.x = 0;
+	m->mlx.y = 0;
+	m->mlx.f = burningship;
+	setall(&m->mlx);
+	mlx_hook(m->mlx.win, 2, 1L << 2, deal_key, &m->mlx);
+	mlx_mouse_hook(m->mlx.win, mouse_hook, &m->mlx);
 }
 
 int		main(int argc, char **argv)
@@ -68,6 +89,8 @@ int		main(int argc, char **argv)
 		set_julia(m);
 	if(ft_strcmp(argv[1], "mandelbrot") == 0)
 		set_mandel(m);
+	if(ft_strcmp(argv[1], "burningship") == 0)
+		set_burningship(m);
 	mlx_loop(m->mlx.mlx);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: aruiz-ba <aruiz-ba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/29 14:26:13 by aruiz-ba          #+#    #+#             */
-/*   Updated: 2019/06/24 20:44:55 by aruiz-ba         ###   ########.fr       */
+/*   Updated: 2019/07/03 18:50:27 by aruiz-ba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,23 @@
 # include "mlx.h"
 # include "math.h"
 # include "pthread.h"
+# include "stdio.h" //BORRAME
 
 # define WIN_WIDTH	700	
 # define WIN_HEIGHT	700
 # define THR_NUM 	700
 # define O			31	
 # define P			35
+# define UP			126
+# define DOWN		125
+# define LEFT		123
+# define RIGHT		124
+
+
+# define U			32	
+# define I			34
+# define T			17	
+# define Y			16
 # define ESC			53
 
 typedef struct		s_image
@@ -37,8 +48,10 @@ typedef struct		s_thr
 	char			**image_string;
 	float			tr1;
 	float			tr2;
-	float			zom1;
-	float			zom2;
+	float			zoma1;
+	float			zoma2;
+	float			zomb1;
+	float			zomb2;
 	int				x;
 	int				y;
 	int				min_k;
@@ -55,8 +68,10 @@ typedef struct		s_mlx
 	t_image			*img;
 	t_thr			thr[THR_NUM];
 	int				k_in;
-	float			zom1;
-	float			zom2;
+	float			zoma1;
+	float			zoma2;
+	int				x;
+	int				y;
 	int				(*f)(int ,t_thr *);
 }					t_mlx;
 
@@ -80,4 +95,5 @@ void	setall(t_mlx *mlx);
 float 	map1(float a, float a0, float a1, float b0, float b1);
 int	error(int i);
 int	mouse_hook(int code, int x, int y, t_mlx *mlx);
+int	burningship(int bright, t_thr *thr);
 

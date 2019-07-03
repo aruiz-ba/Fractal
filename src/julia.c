@@ -6,7 +6,7 @@
 /*   By: aruiz-ba <aruiz-ba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/19 17:50:33 by aruiz-ba          #+#    #+#             */
-/*   Updated: 2019/06/22 18:21:52 by aruiz-ba         ###   ########.fr       */
+/*   Updated: 2019/07/03 16:59:55 by aruiz-ba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,10 @@ int		julia(int bright, t_thr *thr)
 	float	ca;
 	float	cb;
 
-	a = map1(thr->x , 0, WIN_WIDTH, thr->zom1 , thr->zom2);
-	b = map1(thr->y , 0, WIN_HEIGHT, thr->zom1, thr->zom2);
+	a = map1(thr->x , 0, WIN_WIDTH, thr->zoma1 , thr->zoma2);
+	b = map1(thr->y , 0, WIN_HEIGHT, thr->zoma1, thr->zoma2);
 	if(!thr->tr1 || !thr->tr2)
-	{
 		ca = 0;
-	}
 	else
 	{
 		ca = map1(thr->tr1 , 0, WIN_WIDTH, -2, 2);
@@ -48,7 +46,7 @@ int		julia(int bright, t_thr *thr)
 			break ;
 		n++;
 	}
-	bright = map1(n, 0, max_it, 0x0400FF, 0xFB300);
+	bright = map1(n, 0, max_it, 0xFF0000, 0xDEFF00);// para colores azulaos0x0400FF, 0xFB300);
 	if(n == max_it)
 		bright = 0;
 	return(bright);
