@@ -6,7 +6,7 @@
 /*   By: aruiz-ba <aruiz-ba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/29 13:44:35 by aruiz-ba          #+#    #+#             */
-/*   Updated: 2019/07/03 18:57:57 by aruiz-ba         ###   ########.fr       */
+/*   Updated: 2019/07/11 20:24:14 by aruiz-ba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,15 @@
 int		error(int i)
 {
 	if (i == 1)
-		ft_putendl("usage: ./fractol name_of_fractol");
+	{
+		ft_putendl("-usage: ./fractol name_of_fractol");
+		ft_putendl("-Avaliable fractols:\n *julia\n *mandelbrot\n*burningship");
+	}
 	exit(0);
-		return (0);
+	return (0);
 }
 
-void 	set_julia(t_m *m)
+void	set_julia(t_m *m)
 {
 	m->mlx.a = -0.8;
 	m->mlx.b = 0;
@@ -28,7 +31,9 @@ void 	set_julia(t_m *m)
 	m->mlx.k_in = m->k_in;
 	m->mlx.zoma1 = -2;
 	m->mlx.zoma2 = 2;
-	m->mlx.x = 0;
+	m->mlx.zomb1 = -2;
+	m->mlx.zomb2 = 2;
+	m->mlx.x = 1;
 	m->mlx.y = 0;
 	m->mlx.f = julia;
 	setall(&m->mlx);
@@ -37,7 +42,7 @@ void 	set_julia(t_m *m)
 	mlx_hook(m->mlx.win, 6, 1L << 2, mouse_move, &m->mlx);
 }
 
-void 	set_mandel(t_m *m)
+void	set_mandel(t_m *m)
 {
 	m->mlx.a = 2;
 	m->mlx.b = 2;
@@ -45,6 +50,8 @@ void 	set_mandel(t_m *m)
 	m->mlx.k_in = m->k_in;
 	m->mlx.zoma1 = -2;
 	m->mlx.zoma2 = 2;
+	m->mlx.zomb1 = -2;
+	m->mlx.zomb2 = 2;
 	m->mlx.x = 0;
 	m->mlx.y = 0;
 	m->mlx.f = mandelbrot;
@@ -53,7 +60,7 @@ void 	set_mandel(t_m *m)
 	mlx_mouse_hook(m->mlx.win, mouse_hook, &m->mlx);
 }
 
-void 	set_burningship(t_m *m)
+void	set_burningship(t_m *m)
 {
 	m->mlx.a = 2;
 	m->mlx.b = 2;
@@ -61,6 +68,8 @@ void 	set_burningship(t_m *m)
 	m->mlx.k_in = m->k_in;
 	m->mlx.zoma1 = -2;
 	m->mlx.zoma2 = 2;
+	m->mlx.zomb1 = -2;
+	m->mlx.zomb2 = 2;
 	m->mlx.x = 0;
 	m->mlx.y = 0;
 	m->mlx.f = burningship;
@@ -85,12 +94,14 @@ int		main(int argc, char **argv)
 	m->mlx.mlx = mlx_init();
 	m->mlx.win = mlx_new_window(m->mlx.mlx, WIN_WIDTH, WIN_HEIGHT, "fract");
 	new_image(m);
-	if(ft_strcmp(argv[1], "julia") == 0)
+	if (ft_strcmp(argv[1], "julia") == 0)
 		set_julia(m);
-	if(ft_strcmp(argv[1], "mandelbrot") == 0)
+	else if (ft_strcmp(argv[1], "mandelbrot") == 0)
 		set_mandel(m);
-	if(ft_strcmp(argv[1], "burningship") == 0)
+	else if (ft_strcmp(argv[1], "burningship") == 0)
 		set_burningship(m);
+	else
+		error(1);
 	mlx_loop(m->mlx.mlx);
 	return (0);
 }

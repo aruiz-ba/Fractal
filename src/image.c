@@ -6,7 +6,7 @@
 /*   By: aruiz-ba <aruiz-ba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/29 14:02:24 by aruiz-ba          #+#    #+#             */
-/*   Updated: 2019/07/03 19:49:11 by aruiz-ba         ###   ########.fr       */
+/*   Updated: 2019/07/11 16:33:07 by aruiz-ba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,13 @@ void	fill_image(t_thr *thr, int (*f)(int, t_thr *))
 	int		bright;
 	int		x;
 	int		y;
-	
+
 	y = thr->y;
 	x = thr->x;
-	while (thr->y < WIN_WIDTH + y && thr->min_k <= thr->end_k)
+	while (thr->y < (WIN_WIDTH + y) && thr->min_k <= thr->end_k)
 	{
 		thr->x = x;
-		while (thr->x < WIN_HEIGHT + x && thr->min_k <= thr->end_k)
+		while (thr->x < (WIN_HEIGHT + x) && thr->min_k <= thr->end_k)
 		{
 			bright = f(bright, thr);
 			(*thr->image_string)[thr->min_k + 0] = bright % 256 % 256;
@@ -59,18 +59,17 @@ void	fill_image(t_thr *thr, int (*f)(int, t_thr *))
 
 void	new_image(t_m *m)
 {
-/*	if ((m->img = ft_memalloc(sizeof(t_image))) == NULL)
-		return (NULL);*/
 	m->img.image = mlx_new_image(m->mlx.mlx, WIN_WIDTH, WIN_HEIGHT);
-	m->img.ptr = mlx_get_data_addr(m->img.image, &m->img.bpp, &m->img.stride, &m->img.endian);
+	m->img.ptr = mlx_get_data_addr(m->img.image, &m->img.bpp, &m->img.stride,
+	&m->img.endian);
 }
 
-void cast2(t_thr *cast)
+void	cast2(t_thr *cast)
 {
 	fill_image(cast, cast->f);
 }
 
-void *cast(void *cast)
+void	*cast(void *cast)
 {
 	cast2(cast);
 	return (NULL);

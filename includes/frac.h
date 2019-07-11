@@ -6,15 +6,15 @@
 /*   By: aruiz-ba <aruiz-ba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/29 14:26:13 by aruiz-ba          #+#    #+#             */
-/*   Updated: 2019/07/03 19:15:32 by aruiz-ba         ###   ########.fr       */
+/*   Updated: 2019/07/11 20:24:53 by aruiz-ba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../Libft/libft.h"
-# include "mlx.h"
-# include "math.h"
-# include "pthread.h"
-# include "stdio.h" //BORRAME
+#include "../Libft/libft.h"
+#include "mlx.h"
+#include "math.h"
+#include "pthread.h"
+#include "stdio.h" //BORRAME
 
 # define WIN_WIDTH	700	
 # define WIN_HEIGHT	700
@@ -48,9 +48,9 @@ typedef struct		s_thr
 	char			**image_string;
 	float			tr1;
 	float			tr2;
-	float			zoma1;
+	float			zoma1; // x
 	float			zoma2;
-	float			zomb1;
+	float			zomb1; // b
 	float			zomb2;
 	int				x;
 	int				y;
@@ -70,6 +70,8 @@ typedef struct		s_mlx
 	int				k_in;
 	float			zoma1;
 	float			zoma2;
+	float			zomb1;
+	float			zomb2;
 	int				x;
 	int				y;
 	int				(*f)(int ,t_thr *);
