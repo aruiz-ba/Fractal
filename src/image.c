@@ -6,7 +6,7 @@
 /*   By: aruiz-ba <aruiz-ba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/29 14:02:24 by aruiz-ba          #+#    #+#             */
-/*   Updated: 2019/07/13 12:53:34 by aruiz-ba         ###   ########.fr       */
+/*   Updated: 2019/07/15 14:36:33 by aruiz-ba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void	fill_image(t_thr *thr, int (*f)(int, t_thr *))
 		while (thr->x < (WIN_HEIGHT + x) && thr->min_k <= thr->end_k)
 		{
 			bright = f(bright, thr);
+			thr->n = 0;
 			(*thr->image_string)[thr->min_k + 0] = bright % 256 % 256;
 			(*thr->image_string)[thr->min_k + 1] = bright / 256 % 256;
 			(*thr->image_string)[thr->min_k + 2] = bright / 256 / 256;

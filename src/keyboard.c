@@ -6,7 +6,7 @@
 /*   By: aruiz-ba <aruiz-ba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/03 14:12:23 by aruiz-ba          #+#    #+#             */
-/*   Updated: 2019/07/13 17:29:36 by aruiz-ba         ###   ########.fr       */
+/*   Updated: 2019/07/15 17:44:09 by aruiz-ba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,11 @@ void	sub_setall(t_mlx *mlx, int i)
 	mlx->thr[i].zomb2 = mlx->zomb2;
 	mlx->thr[i].x = mlx->x;
 	mlx->thr[i].y = i + mlx->y;
+	mlx->thr[i].color = mlx->color;
 	mlx->thr[i].min_k = i * mlx->k_in;
 	mlx->thr[i].end_k = (i * mlx->k_in) + mlx->k_in;
+	mlx->thr[i].n = 0;
+	mlx->thr[i].max_it = mlx->max_it;
 	mlx->thr[i].f = mlx->f;
 	pthread_create(&mlx->thr[i].tid, NULL, cast, &mlx->thr[i]);
 }
@@ -46,6 +49,20 @@ void	setall(t_mlx *mlx)
 		pthread_join(mlx->thr[i].tid, NULL);
 	}
 	mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->img->image, 0, 0);
+	put_text(mlx);
+}
+
+int		sub_deal_key(int key, t_mlx *mlx)
+{
+	if (key == ESC)
+		exit(0);
+	if (key == C)
+		mlx->color -= 100;
+	if (key == U || key == I || key == T || key == Y || key == ESC
+	|| key == UP || key == DOWN || key == LEFT || key == RIGHT
+	|| key == T1 || key == T2 || key == T3 || key == I || key == O || key == C)
+		setall(mlx);
+	return (1);
 }
 
 int		deal_key(int key, t_mlx *mlx)
@@ -62,17 +79,16 @@ int		deal_key(int key, t_mlx *mlx)
 		mlx->f = burningship;
 	if (key == UP)
 		mlx->y -= 50;
+	if (key == I)
+		mlx->max_it += 10;
+	if (key == O)
+		mlx->max_it -= 10;
 	if (key == DOWN)
 		mlx->y += 50;
 	if (key == LEFT)
 		mlx->x -= 50;
 	if (key == RIGHT)
 		mlx->x += 50;
-	if (key == ESC)
-		exit(0);
-	if (key == U || key == I || key == T || key == Y || key == ESC
-	|| key == UP || key == DOWN || key == LEFT || key == RIGHT
-	|| key == T1 || key == T2 || key == T3)
-		setall(mlx);
+	sub_deal_key(key, mlx);
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: aruiz-ba <aruiz-ba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/29 13:44:35 by aruiz-ba          #+#    #+#             */
-/*   Updated: 2019/07/13 12:54:04 by aruiz-ba         ###   ########.fr       */
+/*   Updated: 2019/07/15 18:14:49 by aruiz-ba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ void	set_julia(t_m *m)
 	m->mlx.zomb2 = 2;
 	m->mlx.x = 1;
 	m->mlx.y = 0;
+	m->mlx.color = 16777215;
+	m->mlx.max_it = INIT_IT;
 	m->mlx.f = julia;
 	setall(&m->mlx);
 	mlx_mouse_hook(m->mlx.win, mouse_hook, &m->mlx);
@@ -54,6 +56,8 @@ void	set_mandel(t_m *m)
 	m->mlx.zomb2 = 2;
 	m->mlx.x = 0;
 	m->mlx.y = 0;
+	m->mlx.color = 16777215;
+	m->mlx.max_it = INIT_IT;
 	m->mlx.f = mandelbrot;
 	setall(&m->mlx);
 	mlx_hook(m->mlx.win, 2, 1L << 2, deal_key, &m->mlx);
@@ -72,6 +76,8 @@ void	set_burningship(t_m *m)
 	m->mlx.zomb2 = 2;
 	m->mlx.x = 0;
 	m->mlx.y = 0;
+	m->mlx.color = 16777215;
+	m->mlx.max_it = INIT_IT;
 	m->mlx.f = burningship;
 	setall(&m->mlx);
 	mlx_hook(m->mlx.win, 2, 1L << 2, deal_key, &m->mlx);
@@ -92,7 +98,8 @@ int		main(int argc, char **argv)
 	ft_bzero(m, sizeof(m));
 	m->k_in = WIN_HEIGHT * 4;
 	m->mlx.mlx = mlx_init();
-	m->mlx.win = mlx_new_window(m->mlx.mlx, WIN_WIDTH, WIN_HEIGHT, "fract");
+	m->mlx.win = mlx_new_window(m->mlx.mlx, WIN_WIDTH,
+	WIN_HEIGHT, "fract");
 	new_image(m);
 	if (ft_strcmp(argv[1], "julia") == 0)
 		set_julia(m);
