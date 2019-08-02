@@ -16,10 +16,10 @@ SRC	= $(addprefix src/, main.c image.c mandelbrot.c julia.c keyboard.c mouse.c b
 
 OBJ = $(SRC:.c=.o)
 
-CC		= gcc -g
+CC		= gcc
 CFLAGS	= -Wall -Wextra -Werror
 
-MLX_LNK	= -L /usr/local/lib/ -lmlx -framework OpenGL -framework AppKit -g
+MLX_LNK	= -L /usr/local/lib/ -lmlx -framework OpenGL -framework AppKit
 
 FT		= ./Libft/
 FT_LIB	= $(addprefix $(FT),libft.a)
