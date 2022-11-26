@@ -87,11 +87,9 @@ void	set_burningship(t_m *m)
 int		main(int argc, char **argv)
 {
 	t_m			*m;
-	int			i;
 
 	if (argc != 2)
 		error(1);
-	i = -1;
 	m = NULL;
 	if (!(m = (t_m*)malloc(sizeof(t_m))))
 		return (-1);

@@ -13,13 +13,13 @@
 #ifndef FRAC_H
 # define FRAC_H
 # include "../Libft/libft.h"
-# include "mlx.h"
+# include "../minilibx/mlx.h"
 # include "math.h"
 # include "pthread.h"
-# define WIN_WIDTH	700
-# define WIN_HEIGHT	700
-# define INIT_IT	100
-# define THR_NUM 	700
+# define WIN_WIDTH	1080
+# define WIN_HEIGHT	1080
+# define INIT_IT	2000
+# define THR_NUM 	1080
 # define UP			126
 # define DOWN		125
 # define LEFT		123

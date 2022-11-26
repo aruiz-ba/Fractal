@@ -19,8 +19,8 @@ static void	ft_freeall(t_list *lst)
 	while (lst)
 	{
 		temp = lst;
-		free(lst);
 		lst = temp->next;
+		free(temp);
 	}
 }
 
